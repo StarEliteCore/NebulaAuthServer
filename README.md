@@ -3,9 +3,9 @@
 > Lightweight authorization framework
 
 ## Project structure
-Cyaim.Authentication:authorization common library.
-NebulaAuthServer.AccessManagement:All standard,authorization model it's here.
-NebulaAuthServer:Authorization center.
+Cyaim.Authentication:authorization common library. 
+NebulaAuthServer.AccessManagement:All standard,authorization model it's here. 
+NebulaAuthServer:Authorization center. 
 
 ## Quick Start
 
