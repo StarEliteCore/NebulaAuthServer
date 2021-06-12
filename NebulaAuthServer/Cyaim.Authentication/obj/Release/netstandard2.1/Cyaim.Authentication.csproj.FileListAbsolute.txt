@@ -1,0 +1,9 @@
+E:\WorkSpaces\Cyaim.Authentication\AuthorizationSecurity\Cyaim.Authentication\bin\Release\netstandard2.1\Cyaim.Authentication.deps.json
+E:\WorkSpaces\Cyaim.Authentication\AuthorizationSecurity\Cyaim.Authentication\bin\Release\netstandard2.1\Cyaim.Authentication.dll
+E:\WorkSpaces\Cyaim.Authentication\AuthorizationSecurity\Cyaim.Authentication\bin\Release\netstandard2.1\Cyaim.Authentication.pdb
+E:\WorkSpaces\Cyaim.Authentication\AuthorizationSecurity\Cyaim.Authentication\obj\Release\netstandard2.1\Cyaim.Authentication.csprojAssemblyReference.cache
+E:\WorkSpaces\Cyaim.Authentication\AuthorizationSecurity\Cyaim.Authentication\obj\Release\netstandard2.1\Cyaim.Authentication.AssemblyInfoInputs.cache
+E:\WorkSpaces\Cyaim.Authentication\AuthorizationSecurity\Cyaim.Authentication\obj\Release\netstandard2.1\Cyaim.Authentication.AssemblyInfo.cs
+E:\WorkSpaces\Cyaim.Authentication\AuthorizationSecurity\Cyaim.Authentication\obj\Release\netstandard2.1\Cyaim.Authentication.csproj.CoreCompileInputs.cache
+E:\WorkSpaces\Cyaim.Authentication\AuthorizationSecurity\Cyaim.Authentication\obj\Release\netstandard2.1\Cyaim.Authentication.dll
+E:\WorkSpaces\Cyaim.Authentication\AuthorizationSecurity\Cyaim.Authentication\obj\Release\netstandard2.1\Cyaim.Authentication.pdb
