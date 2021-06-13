@@ -1,9 +1,0 @@
-E:\WorkSpaces\NebulaAuthServer\NebulaAuthServer\NebulaAuthServer.AccessManagement\bin\Debug\netstandard2.1\NebulaAuthServer.AccessManagement.deps.json
-E:\WorkSpaces\NebulaAuthServer\NebulaAuthServer\NebulaAuthServer.AccessManagement\bin\Debug\netstandard2.1\NebulaAuthServer.AccessManagement.dll
-E:\WorkSpaces\NebulaAuthServer\NebulaAuthServer\NebulaAuthServer.AccessManagement\bin\Debug\netstandard2.1\NebulaAuthServer.AccessManagement.pdb
-E:\WorkSpaces\NebulaAuthServer\NebulaAuthServer\NebulaAuthServer.AccessManagement\obj\Debug\netstandard2.1\NebulaAuthServer.AccessManagement.csproj.AssemblyReference.cache
-E:\WorkSpaces\NebulaAuthServer\NebulaAuthServer\NebulaAuthServer.AccessManagement\obj\Debug\netstandard2.1\NebulaAuthServer.AccessManagement.AssemblyInfoInputs.cache
-E:\WorkSpaces\NebulaAuthServer\NebulaAuthServer\NebulaAuthServer.AccessManagement\obj\Debug\netstandard2.1\NebulaAuthServer.AccessManagement.AssemblyInfo.cs
-E:\WorkSpaces\NebulaAuthServer\NebulaAuthServer\NebulaAuthServer.AccessManagement\obj\Debug\netstandard2.1\NebulaAuthServer.AccessManagement.csproj.CoreCompileInputs.cache
-E:\WorkSpaces\NebulaAuthServer\NebulaAuthServer\NebulaAuthServer.AccessManagement\obj\Debug\netstandard2.1\NebulaAuthServer.AccessManagement.dll
-E:\WorkSpaces\NebulaAuthServer\NebulaAuthServer\NebulaAuthServer.AccessManagement\obj\Debug\netstandard2.1\NebulaAuthServer.AccessManagement.pdb

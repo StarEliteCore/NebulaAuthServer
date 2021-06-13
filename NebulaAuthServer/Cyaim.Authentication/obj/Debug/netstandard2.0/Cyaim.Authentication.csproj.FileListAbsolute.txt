@@ -1,9 +1,0 @@
-E:\WorkSpaces\NCU.AnAssociationManager\Cyaim.Authentication\obj\Debug\netstandard2.0\Cyaim.Authentication.csprojAssemblyReference.cache
-E:\WorkSpaces\NCU.AnAssociationManager\Cyaim.Authentication\obj\Debug\netstandard2.0\Cyaim.Authentication.AssemblyInfoInputs.cache
-E:\WorkSpaces\NCU.AnAssociationManager\Cyaim.Authentication\obj\Debug\netstandard2.0\Cyaim.Authentication.AssemblyInfo.cs
-E:\WorkSpaces\NCU.AnAssociationManager\Cyaim.Authentication\bin\Debug\netstandard2.0\Cyaim.Authentication.deps.json
-E:\WorkSpaces\NCU.AnAssociationManager\Cyaim.Authentication\bin\Debug\netstandard2.0\Cyaim.Authentication.dll
-E:\WorkSpaces\NCU.AnAssociationManager\Cyaim.Authentication\bin\Debug\netstandard2.0\Cyaim.Authentication.pdb
-E:\WorkSpaces\NCU.AnAssociationManager\Cyaim.Authentication\obj\Debug\netstandard2.0\Cyaim.Authentication.dll
-E:\WorkSpaces\NCU.AnAssociationManager\Cyaim.Authentication\obj\Debug\netstandard2.0\Cyaim.Authentication.pdb
-E:\WorkSpaces\NCU.AnAssociationManager\Cyaim.Authentication\obj\Debug\netstandard2.0\Cyaim.Authentication.csproj.CoreCompileInputs.cache

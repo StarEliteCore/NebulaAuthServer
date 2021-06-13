@@ -2,13 +2,20 @@
 # 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
 ################################################################################
 
-/Cyaim.Authentication/obj
-/.vs
-/Cyaim.Authentication/.vs/Cyaim.Authentication/DesignTimeBuild
-/Cyaim.Authentication/bin/Debug
-/Cyaim.Authentication.MigrateCLI/.vs/Cyaim.Authentication.MigrateCLI/v16
-/Cyaim.Authentication.MigrateCLI/bin/Debug/netcoreapp3.1
-/Cyaim.Authentication.MigrateCLI/obj
-/Cyaim.Authentication/Properties/PublishProfiles
+/NebulaAuthServer/Cyaim.Authentication/obj
+/NebulaAuthServer/.vs
+/NebulaAuthServer/Cyaim.Authentication/.vs/Cyaim.Authentication/DesignTimeBuild
+/NebulaAuthServer/Cyaim.Authentication/bin/Debug
+/NebulaAuthServer/Cyaim.Authentication.MigrateCLI/.vs/Cyaim.Authentication.MigrateCLI/v16
+/NebulaAuthServer/Cyaim.Authentication.MigrateCLI/bin/Debug/netcoreapp3.1
+/NebulaAuthServer/Cyaim.Authentication.MigrateCLI/obj
+/NebulaAuthServer/Cyaim.Authentication/Properties/PublishProfiles
 *.user
-/Cyaim.Authentication/bin/Release
+/NebulaAuthServer/Cyaim.Authentication/bin/Release
+
+
+/NebulaAuthServer/NebulaAuthServer/obj
+/NebulaAuthServer/NebulaAuthServer/bin
+
+/NebulaAuthServer/NebulaAuthServer.AccessManagement/obj
+/NebulaAuthServer/NebulaAuthServer.AccessManagement/bin
