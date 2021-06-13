@@ -54,44 +54,6 @@ namespace Microsoft.Extensions.DependencyInjection
                 assembly = Assembly.LoadFile(authOptions.WatchAssemblyPath);
             }
 
-            #region MyRegion
-
-            ////加载授权节点
-            //IEnumerable<AuthEndPointParm> authEndPointParms = new AuthEndPointParm[0];
-            //string assemblyName = assembly.FullName.Split()[0]?.Trim(',') + ".Controllers";
-            //var types = assembly.GetTypes().Where(x => !x.IsNestedPrivate && x.FullName.StartsWith(assemblyName)).ToList();
-            //foreach (var item in types)
-            //{
-            //    var accessParm = authService.GetClassAccessParm(item);
-            //    authEndPointParms = authEndPointParms.Union(accessParm);
-            //    foreach (AuthEndPointParm parmItem in accessParm)
-            //    {
-            //        foreach (var attItem in parmItem.AuthEndPointAttributes)
-            //        {
-            //            if (attItem == null)
-            //            {
-            //                continue;
-            //            }
-
-            //            if (string.IsNullOrEmpty(attItem.AuthEndPoint))
-            //            {
-            //                attItem.AuthEndPoint = $"{parmItem.ControllerName}.{parmItem.ActionName}";
-            //            }
-
-            //            authService.RegisterAccessCode(attItem.AuthEndPoint, attItem.IsAllow);
-
-            //            Console.WriteLine($"加载成功 -> {attItem.AuthEndPoint} 允许访问");
-            //        }
-
-            //    }
-
-            //}
-
-            //authOptions.WatchAuthEndPoint = authEndPointParms.ToArray();
-            #endregion
-
-            //正则匹配有鉴权攻击风险！！！   
-
             //加载授权节点
             IEnumerable<AuthEndPointAttribute> authEndPointParms = new AuthEndPointAttribute[0];
             string assemblyName = assembly.FullName.Split()[0]?.Trim(',') + ".Controllers";
@@ -117,6 +79,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     Console.WriteLine($"加载成功 -> {parmItem.AuthEndPoint} 允许访问");
                 }
 
+                //正则匹配有鉴权攻击风险！！！   
                 AuthEnableRegexAttribute[] accessRegexParm = AuthServiceCollectionExtensions.GetClassAccessParm_AuthEnableRegexAttribute(item);
                 foreach (AuthEnableRegexAttribute parmItem in accessRegexParm)
                 {
