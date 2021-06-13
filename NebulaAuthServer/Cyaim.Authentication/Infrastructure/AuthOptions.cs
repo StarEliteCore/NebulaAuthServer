@@ -10,6 +10,9 @@ using static Cyaim.Authentication.Infrastructure.AuthenticationService;
 
 namespace Cyaim.Authentication.Infrastructure
 {
+    /// <summary>
+    /// 鉴权配置
+    /// </summary>
     public class AuthOptions
     {
         /// <summary>
@@ -38,10 +41,10 @@ namespace Cyaim.Authentication.Infrastructure
         public string WatchAssemblyPath { get; set; }
 
         /// <summary>
-        /// 监听的授权节点
+        /// 监听的权限控制节点
         /// </summary>
         //public AuthEndPointParm[] WatchAuthEndPoint { get; set; }
-        public AuthEndPointAttribute[] WatchAuthEndPoint { get; set; }
+        public IAuthEndPointAttribute[] WatchAccessControlEndPoints { get; set; }
 
         /// <summary>
         /// 未授权响应配置
@@ -55,7 +58,7 @@ namespace Cyaim.Authentication.Infrastructure
         /// <param name="httpContext">HTTP上下文</param>
         /// <param name="authOptions">授权配置</param>
         /// <returns></returns>
-        public delegate Task<AuthEndPointAttribute[]> ExtractAuthEndPointsHandler(string authKey, HttpContext httpContext, AuthOptions authOptions);
+        public delegate Task<IAuthEndPointAttribute[]> ExtractAuthEndPointsHandler(string authKey, HttpContext httpContext, AuthOptions authOptions);
 
         /// <summary>
         /// 从缓存提取
@@ -113,6 +116,9 @@ namespace Cyaim.Authentication.Infrastructure
         /// 无权限响应内容
         /// </summary>
         public string NonAccessResponseContent { get; set; }
+
+        public const string DefaultContentType = "application/json";
+        public const string DefaultResponse = @"{""status"":403, ""msg"":""No permission""}";
     }
 
 

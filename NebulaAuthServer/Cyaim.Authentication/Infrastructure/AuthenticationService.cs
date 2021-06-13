@@ -72,6 +72,9 @@ namespace Cyaim.Authentication.Infrastructure
                 switch (item)
                 {
                     case AccessSourceEnum.AuthCenter:
+                        {
+
+                        }
                         break;
                     case AccessSourceEnum.Cache:
                         {
@@ -143,7 +146,7 @@ namespace Cyaim.Authentication.Infrastructure
             stopwatch.Start();
 
             var handler = _authOptions?.ExtractDatabaseAuthEndPoints;
-            AuthEndPointAttribute[] parm = null;
+            IAuthEndPointAttribute[] parm = null;
             if (handler != null)
             {
                 parm = await handler?.Invoke(authKey, context, _authOptions);
@@ -173,7 +176,7 @@ namespace Cyaim.Authentication.Infrastructure
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            bool isAccess = CheckAuth(context, _authOptions.WatchAuthEndPoint);
+            bool isAccess = CheckAuth(context, _authOptions.WatchAccessControlEndPoints);
             stopwatch.Stop();
             Console.WriteLine("默认鉴权耗时ms:" + stopwatch.ElapsedMilliseconds);
 

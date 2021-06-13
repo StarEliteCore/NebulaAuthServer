@@ -55,7 +55,7 @@ namespace Microsoft.Extensions.DependencyInjection
             }
 
             //加载授权节点
-            IEnumerable<AuthEndPointAttribute> authEndPointParms = new AuthEndPointAttribute[0];
+            IEnumerable<IAuthEndPointAttribute> authEndPointParms = new IAuthEndPointAttribute[0];
             string assemblyName = assembly.FullName.Split()[0]?.Trim(',') + ".Controllers";
             var types = assembly.GetTypes().Where(x => !x.IsNestedPrivate && x.FullName.StartsWith(assemblyName)).ToList();
             foreach (var item in types)
@@ -81,6 +81,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
                 //正则匹配有鉴权攻击风险！！！   
                 AuthEnableRegexAttribute[] accessRegexParm = AuthServiceCollectionExtensions.GetClassAccessParm_AuthEnableRegexAttribute(item);
+                authEndPointParms = authEndPointParms.Union(accessRegexParm);
                 foreach (AuthEnableRegexAttribute parmItem in accessRegexParm)
                 {
                     if (parmItem == null)
@@ -98,7 +99,7 @@ namespace Microsoft.Extensions.DependencyInjection
             }
 
 
-            authOptions.WatchAuthEndPoint = authEndPointParms.ToArray();
+            authOptions.WatchAccessControlEndPoints = authEndPointParms.ToArray();
 
 
             //获取处理后的缓存并覆盖
