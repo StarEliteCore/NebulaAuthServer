@@ -125,6 +125,8 @@ namespace Microsoft.Extensions.DependencyInjection
                         continue;
                     }
 
+                    parmItem.Regex = new System.Text.RegularExpressions.Regex(parmItem.AuthEndPoint);
+
                     parmItem.AuthEndPoint = $"{authOptions.PreAccessEndPointKey}:Regex⊇{parmItem.AuthEndPoint}";
                     authService.RegisterAccessCode(parmItem.AuthEndPoint, parmItem.IsAllow);
 

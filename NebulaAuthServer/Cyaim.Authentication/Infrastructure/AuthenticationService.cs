@@ -21,14 +21,32 @@ namespace Cyaim.Authentication.Infrastructure
     /// </summary>
     public class AuthenticationService : IAuthService
     {
+        /// <summary>
+        /// 授权配置
+        /// </summary>
         public readonly AuthOptions _authOptions;
+
+        /// <summary>
+        /// 缓存
+        /// </summary>
         public readonly IMemoryCache _memoryCache;
 
+        /// <summary>
+        /// 权限节点缓存策略
+        /// </summary>
         public readonly MemoryCacheEntryOptions cacheEntryOptions = new MemoryCacheEntryOptions()
              .SetPriority(CacheItemPriority.NeverRemove);
 
+        /// <summary>
+        /// 权限节点，缓存，Key权限节点，Value是否允许访问
+        /// </summary>
         public readonly Dictionary<string, bool> EndPoints = null;
 
+        /// <summary>
+        /// 授权服务
+        /// </summary>
+        /// <param name="authOptions"></param>
+        /// <param name="memoryCache"></param>
         public AuthenticationService(AuthOptions authOptions, IMemoryCache memoryCache)
         {
             _authOptions = authOptions;
@@ -48,7 +66,7 @@ namespace Cyaim.Authentication.Infrastructure
         {
             string authKey = GetAuthorizationValue(context);
 
-            //同步检测
+            //检测序列
             foreach (AccessSourceEnum item in _authOptions.AccessSources)
             {
                 switch (item)
@@ -95,7 +113,7 @@ namespace Cyaim.Authentication.Infrastructure
         {
             var handler = _authOptions?.ExtractCacheAuthEndPoints;
 
-            AuthEndPointAttribute[] parm = null;
+            IAuthEndPointAttribute[] parm = null;
             if (handler != null)
             {
                 parm = await handler?.Invoke(authKey, context, _authOptions);
@@ -168,59 +186,13 @@ namespace Cyaim.Authentication.Infrastructure
         /// <param name="context"></param>
         /// <param name="authEndPoints">授权节点列表</param>
         /// <returns></returns>
-        public bool CheckAuth(HttpContext context, AuthEndPointAttribute[] authEndPoints)
+        public bool CheckAuth(HttpContext context, IAuthEndPointAttribute[] authEndPoints)
         {
 
             if (authEndPoints == null || authEndPoints.Length < 1)
             {
                 return false;
             }
-
-            #region MyRegion
-            //string controllerName = context.GetRouteValue("controller")?.ToString().ToLower();
-            //string actionName = context.GetRouteValue("action")?.ToString().ToLower();
-            //string method = context.Request?.Method?.ToUpper();
-            //if (string.IsNullOrEmpty(method))
-            //{
-            //    return false;
-            //}
-            //if (string.IsNullOrEmpty(controllerName) || string.IsNullOrEmpty(actionName))
-            //{
-            //    //    var reqPaths = context.Request.Path.Value.Split('/').TakeLast(2).ToArray();
-            //    //    if (reqPaths.Length < 2)
-            //    //    {
-            //    //不在监听范围
-            //    return true;
-            //    //    }
-            //    //    controllerName = reqPaths[0];
-            //    //    actionName = reqPaths[1];
-            //}
-
-            ////搜索节点，路由标记不为空、Http请求方法符合标记的请求方法
-            //var matcheps = authEndPointParms.Where(x => x.Routes != null && x.Routes.Any(y => y.HttpMethods.Any(z => z?.ToUpper() == method)));
-            ////搜索节点，忽略Controller大小写、Action匹配小写
-            //var allowep = matcheps.FirstOrDefault(x => x.ControllerName.IndexOf(controllerName, StringComparison.CurrentCultureIgnoreCase) == 0 && x.ActionName?.ToLower() == actionName);
-
-            ////允许访问
-            //var isAllow = allowep.AuthEndPointAttributes?.FirstOrDefault()?.IsAllow;
-            //if (isAllow.HasValue && isAllow.Value)
-            //{
-            //    return true;
-            //}
-
-            ////当被访问的Action没有标记授权节点时，查找Controller授权节点
-            //if (allowep.AuthEndPointAttributes != null && allowep.AuthEndPointAttributes.Length == 0)
-            //{
-            //    var allowAll = authEndPointParms.FirstOrDefault(x => x.ActionName == "*");
-            //    var isAllowAll = allowAll.AuthEndPointAttributes.FirstOrDefault()?.IsAllow;
-
-            //    if (isAllowAll.HasValue && isAllowAll.Value)
-            //    {
-            //        return true;
-            //    }
-            //}
-            #endregion
-
 
             string controllerName = context.GetRouteValue(AuthOptions.CONTROLLER)?.ToString().ToLower();
             string actionName = context.GetRouteValue(AuthOptions.ACTION)?.ToString().ToLower();
@@ -230,28 +202,29 @@ namespace Cyaim.Authentication.Infrastructure
                 return true;
             }
 
+
+
+            #region 精确匹配权限节点
+            //搜索节点，路由标记不为空、Http请求方法符合标记的请求方法
+            IEnumerable<AuthEndPointAttribute> authEndpoints = authEndPoints.Where(x => x is AuthEndPointAttribute).Select(x => x as AuthEndPointAttribute);
+            if (authEndpoints.Count() < 1)
+            {
+                // 精确节点标记为空，尝试匹配正则
+                goto RegexMatch;
+            }
+
             string method = context.Request?.Method?.ToUpper();
             if (string.IsNullOrEmpty(method))
             {
                 return false;
             }
 
-            //搜索节点，路由标记不为空、Http请求方法符合标记的请求方法
-            var matcheps = authEndPoints.Where(x => x.Routes != null && x.Routes.Any(y => y.HttpMethods.Any(z => z?.ToUpper() == method)));
+            //查找请求方法限定
+            var matcheps = authEndpoints.Where(x => x.Routes != null && x.Routes.Any(y => y.HttpMethods.Any(z => z?.ToUpper() == method)));
             //搜索节点，忽略Controller大小写、Action匹配小写
-            var allowep = matcheps.FirstOrDefault(x =>
+            AuthEndPointAttribute allowep = matcheps.FirstOrDefault(x =>
             x.ControllerName.IndexOf(controllerName, StringComparison.CurrentCultureIgnoreCase) == 0 &&
             x.ActionName?.ToLower() == actionName);
-
-
-            ////搜索节点，忽略Controller大小写、Action匹配小写
-            //var alloweps = matcheps.Where(x =>
-            //x.ControllerName.IndexOf(controllerName, StringComparison.CurrentCultureIgnoreCase) == 0);
-
-            ////通过MVC找到的Controller和Action，查找监听节点，通过节点找到实际路由模版
-            ////var watchep = _authOptions.WatchAuthEndPoint.FirstOrDefault(x => x.ControllerName?.ToLower() == controllerName.ToLower() + "controller"
-            ////&& x.ActionName?.ToLower() == actionName);
-            ////var allowep = alloweps.FirstOrDefault(x => watchep.Routes.Any(y => y.Template?.ToLower() == x.ActionName?.ToLower()));
 
             //允许访问
             bool? isAllow = allowep?.IsAllow;
@@ -264,7 +237,7 @@ namespace Cyaim.Authentication.Infrastructure
             //当被访问的Action没有标记授权节点时，查找Controller授权节点
             if (allowep == null)
             {
-                var allowAll = authEndPoints.FirstOrDefault(x => x.ControllerName?.ToLower() == controllerName.ToLower() + AuthOptions.CONTROLLER && x.ActionName == "*");
+                var allowAll = authEndpoints.FirstOrDefault(x => x.ControllerName?.ToLower() == controllerName.ToLower() + AuthOptions.CONTROLLER && x.ActionName == "*");
                 var isAllowAll = allowAll?.IsAllow;
                 var allowGuestAll = allowAll?.AllowGuest;
 
@@ -273,8 +246,25 @@ namespace Cyaim.Authentication.Infrastructure
                     return true;
                 }
             }
+            #endregion
 
-            return false;
+
+            //正则匹配节点
+            RegexMatch:
+            #region 正则匹配节点
+            IEnumerable<AuthEnableRegexAttribute> regexAuthEndpoints = authEndPoints.Where(x => x is AuthEnableRegexAttribute).Select(x => x as AuthEnableRegexAttribute).ToArray();
+            if (regexAuthEndpoints.Count() < 1)
+            {
+                return false;
+            }
+            string regexInput = $"{controllerName}.{actionName}";
+            bool hasAllow = regexAuthEndpoints.Where(x => x.Regex != null && x.Regex.IsMatch(regexInput) && (x.AllowGuest || x.IsAllow)).Any();
+
+            return hasAllow;
+            #endregion
+
+
+            //return false;
         }
 
         #endregion
