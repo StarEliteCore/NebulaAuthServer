@@ -40,7 +40,7 @@ namespace Cyaim.Authentication.Infrastructure
         /// <summary>
         /// 权限节点，缓存，Key权限节点，Value是否允许访问
         /// </summary>
-        public readonly Dictionary<string, bool> EndPoints = null;
+        public readonly IReadOnlyDictionary<string, bool> EndPoints = null;
 
         /// <summary>
         /// 授权服务
@@ -51,7 +51,7 @@ namespace Cyaim.Authentication.Infrastructure
         {
             _authOptions = authOptions;
             _memoryCache = memoryCache;
-
+      
             memoryCache.TryGetValue("Cyaim_AuthEndPoints", out EndPoints);
         }
 
