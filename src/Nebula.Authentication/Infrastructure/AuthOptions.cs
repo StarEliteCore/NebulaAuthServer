@@ -1,4 +1,4 @@
-﻿using Cyaim.Authentication.Infrastructure.Attributes;
+﻿using Nebula.Authentication.Infrastructure.Attributes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.OpenApi.Models;
 using System;
@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using static Cyaim.Authentication.Infrastructure.AuthenticationService;
+using static Nebula.Authentication.Infrastructure.AuthenticationService;
 
-namespace Cyaim.Authentication.Infrastructure
+namespace Nebula.Authentication.Infrastructure
 {
     /// <summary>
     /// 鉴权配置

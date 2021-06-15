@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Cyaim.Authentication.Infrastructure.Helpers
+namespace Nebula.Authentication.Infrastructure.Helpers
 {
     public class URLStructHelper
     {

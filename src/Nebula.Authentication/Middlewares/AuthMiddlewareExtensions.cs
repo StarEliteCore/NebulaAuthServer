@@ -1,9 +1,9 @@
-﻿using Cyaim.Authentication.Infrastructure;
+﻿using Nebula.Authentication.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Primitives;
 using System;
 
-namespace Cyaim.Authentication.Middlewares
+namespace Nebula.Authentication.Middlewares
 {
     /// <summary>
     /// 

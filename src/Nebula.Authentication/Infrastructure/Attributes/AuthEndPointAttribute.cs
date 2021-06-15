@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Cyaim.Authentication.Infrastructure.Attributes
+namespace Nebula.Authentication.Infrastructure.Attributes
 {
     /// <summary>
     /// 授权节点特性

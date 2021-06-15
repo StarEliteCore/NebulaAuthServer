@@ -1,9 +1,9 @@
-﻿using Cyaim.Authentication.Infrastructure.Attributes;
+﻿using Nebula.Authentication.Infrastructure.Attributes;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Threading.Tasks;
 
-namespace Cyaim.Authentication.Infrastructure
+namespace Nebula.Authentication.Infrastructure
 {
     public interface IAuthService
     {

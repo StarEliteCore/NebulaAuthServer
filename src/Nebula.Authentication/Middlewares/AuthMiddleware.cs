@@ -1,4 +1,4 @@
-﻿using Cyaim.Authentication.Infrastructure;
+﻿using Nebula.Authentication.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -11,7 +11,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cyaim.Authentication.Middlewares
+namespace Nebula.Authentication.Middlewares
 {
     /// <summary>
     /// 授权服务仅在本程序内运行

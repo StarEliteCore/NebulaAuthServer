@@ -1,4 +1,4 @@
-﻿using Cyaim.Authentication.Infrastructure.Attributes;
+﻿using Nebula.Authentication.Infrastructure.Attributes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
@@ -14,7 +14,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cyaim.Authentication.Infrastructure
+namespace Nebula.Authentication.Infrastructure
 {
     /// <summary>
     /// 授权服务
@@ -51,7 +51,7 @@ namespace Cyaim.Authentication.Infrastructure
         {
             _authOptions = authOptions;
             _memoryCache = memoryCache;
-      
+
             memoryCache.TryGetValue("Cyaim_AuthEndPoints", out EndPoints);
         }
 
@@ -249,11 +249,11 @@ namespace Cyaim.Authentication.Infrastructure
                     return true;
                 }
             }
-            #endregion
+        #endregion
 
 
-            //正则匹配节点
-            RegexMatch:
+        //正则匹配节点
+        RegexMatch:
             #region 正则匹配节点
             IEnumerable<AuthEnableRegexAttribute> regexAuthEndpoints = authEndPoints.Where(x => x is AuthEnableRegexAttribute).Select(x => x as AuthEnableRegexAttribute).ToArray();
             if (regexAuthEndpoints.Count() < 1)

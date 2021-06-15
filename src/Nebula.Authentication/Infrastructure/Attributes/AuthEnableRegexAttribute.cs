@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Cyaim.Authentication.Infrastructure.Attributes
+namespace Nebula.Authentication.Infrastructure.Attributes
 {
     /// <summary>
     /// 标志启用正则匹配，该特性只能标记在控制器层
