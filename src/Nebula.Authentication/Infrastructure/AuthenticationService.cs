@@ -249,11 +249,11 @@ namespace Nebula.Authentication.Infrastructure
                     return true;
                 }
             }
-        #endregion
+            #endregion
 
 
-        //正则匹配节点
-        RegexMatch:
+            //正则匹配节点
+            RegexMatch:
             #region 正则匹配节点
             IEnumerable<AuthEnableRegexAttribute> regexAuthEndpoints = authEndPoints.Where(x => x is AuthEnableRegexAttribute).Select(x => x as AuthEnableRegexAttribute).ToArray();
             if (regexAuthEndpoints.Count() < 1)

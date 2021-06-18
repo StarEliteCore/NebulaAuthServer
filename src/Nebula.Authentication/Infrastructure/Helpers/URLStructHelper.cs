@@ -51,8 +51,8 @@ namespace Nebula.Authentication.Infrastructure.Helpers
 
             public const string MARK_CONTROLLER = "{controller}";
             public const string MARK_ACTION = "{action}";
-            public static readonly int MarkControllerLength = MARK_CONTROLLER.Length;
-            public static readonly int MarkActionLength = MARK_ACTION.Length;
+            //public static readonly int MarkControllerLength = MARK_CONTROLLER.Length;
+            //public static readonly int MarkActionLength = MARK_ACTION.Length;
 
             public const string MARK_SCHEME = ":/";
             public const char MARK_PATHSPLIT = '/';
@@ -87,41 +87,45 @@ namespace Nebula.Authentication.Infrastructure.Helpers
             string pathPreStr = template.Substring(0, tempControllerIndex);
 
             //协议标记位置必须在模版前缀之前
-            int schemeIndex = url.LastIndexOf(URLStruct.MARK_SCHEME, tempControllerIndex);
-            if (schemeIndex != -1)
-            {
-                for (int currIndex = 0; currIndex - schemeIndex < 2; schemeIndex = currIndex - schemeIndex < 2 ? currIndex : schemeIndex)
-                {
-                    currIndex = url.IndexOf(URLStruct.MARK_PATHSPLIT, schemeIndex + 1);
-                }
+            urls.Scheme = urls.Uri.Scheme;
 
-                urls.Scheme = url.Substring(0, ++schemeIndex);
-            }
+            //int schemeIndex = url.LastIndexOf(URLStruct.MARK_SCHEME, tempControllerIndex);
+            //if (schemeIndex != -1)
+            //{
+            //    for (int currIndex = 0; currIndex - schemeIndex < 2; schemeIndex = currIndex - schemeIndex < 2 ? currIndex : schemeIndex)
+            //    {
+            //        currIndex = url.IndexOf(URLStruct.MARK_PATHSPLIT, schemeIndex + 1);
+            //    }
+
+            //    urls.Scheme = url.Substring(0, ++schemeIndex);
+            //}
 
             //主机地址，无协议头直接从0取，有协议头从协议头位置到模版路径前缀位置
-            int controllerIndex = url.IndexOf(pathPreStr, 0);
-            if (schemeIndex == -1)
-            {
-                urls.Host = url.Substring(0, controllerIndex);
-            }
-            else
-            {
-                controllerIndex = url.IndexOf(URLStruct.MARK_PATHSPLIT, schemeIndex);
-                urls.Host = url.Substring(schemeIndex, controllerIndex - schemeIndex);
-            }
+            urls.Host = urls.Uri.Host;
 
+            //int controllerIndex = url.IndexOf(pathPreStr, 0);
+            //if (schemeIndex == -1)
+            //{
+            //    urls.Host = url.Substring(0, controllerIndex);
+            //}
+            //else
+            //{
+            //    controllerIndex = url.IndexOf(URLStruct.MARK_PATHSPLIT, schemeIndex);
+            //    urls.Host = url.Substring(schemeIndex, controllerIndex - schemeIndex);
+            //}
 
-            int queryIndex = url.IndexOf(URLStruct.MARK_QUERYSPLIT, controllerIndex);
-            if (queryIndex == -1)
-            {
-                urls.Path = url.Substring(controllerIndex, url.Length - controllerIndex);
-            }
-            else
-            {
-                urls.Path = url.Substring(controllerIndex, queryIndex - controllerIndex);
-                urls.QueryString = url.Substring(queryIndex, url.Length - queryIndex);
-            }
+            urls.Path = urls.Uri.AbsolutePath;
 
+            //int queryIndex = url.IndexOf(URLStruct.MARK_QUERYSPLIT, controllerIndex);
+            //if (queryIndex == -1)
+            //{
+            //    urls.Path = url.Substring(controllerIndex, url.Length - controllerIndex);
+            //}
+            //else
+            //{
+            //    urls.Path = url.Substring(controllerIndex, queryIndex - controllerIndex);
+            //    urls.QueryString = url.Substring(queryIndex, url.Length - queryIndex);
+            //}
 
 
             url = urls.Path.Replace(pathPreStr, string.Empty);
