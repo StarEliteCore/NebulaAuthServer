@@ -118,7 +118,7 @@ namespace Nebula.Authentication.Infrastructure
         public string NonAccessResponseContent { get; set; }
 
         public const string DefaultContentType = "application/json";
-        public const string DefaultResponse = @"{""status"":403, ""msg"":""No permission""}";
+        public const string DefaultResponse = @"{""status"":401, ""msg"":""No permission""}";
     }
 
 

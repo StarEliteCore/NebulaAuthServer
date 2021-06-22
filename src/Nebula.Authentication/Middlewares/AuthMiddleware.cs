@@ -87,10 +87,10 @@ namespace Nebula.Authentication.Middlewares
             string token = AuthService.GetAuthorizationValue(context);
             Logger.LogWarning($"凭据 {token} -> {context.Request.Scheme}://{context.Request.Host}{context.Request.Path.Value} 无权限访问");
 
-            var noAccessParm = _authOptions.Value.NonAccessParm;
+            var noAccessParm = ((AuthenticationService)AuthService)._authOptions.NonAccessParm;
             if (noAccessParm == null)
             {
-                context.Response.StatusCode = 403;
+                context.Response.StatusCode = 401;
                 context.Response.ContentType = NonAccessParm.DefaultContentType;
                 await context.Response.WriteAsync(NonAccessParm.DefaultResponse);
             }
